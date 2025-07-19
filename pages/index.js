@@ -41,7 +41,7 @@ export default function Home() {
         {/* Présentation avec photo de profil */}
         <div className="flex flex-col md:flex-row items-center justify-center mb-12 gap-8 md:gap-16">
           <div className="order-2 md:order-1 flex-1 flex flex-col items-center md:items-start">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center md:text-left">Bienvenue sur mon site de tutoriels Python !</h2>
+            <h1 className="text-4xl font-bold mb-4 text-blue-900 whitespace-nowrap">Bienvenue sur mon site de tutoriels Python !</h1>
             <p className="text-lg md:text-xl mb-4 max-w-2xl text-center md:text-left">
               Je suis étudiant à la Normandie Web School en tant que développeur web. Retrouvez ici tous mes tutoriels Python réalisés au premier semestre de ma deuxième année, sous différents formats (vidéo, texte, images). Apprenez à coder facilement et à votre rythme !
             </p>

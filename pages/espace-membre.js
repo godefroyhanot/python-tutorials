@@ -1,11 +1,19 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 export default function EspaceMembre() {
   const [pseudo, setPseudo] = useState("");
   const [logged, setLogged] = useState(false);
   const [completed, setCompleted] = useState([]);
 
+  const router = useRouter();
   useEffect(() => {
+    // Protection par token JWT
+    const token = localStorage.getItem('auth_token');
+    if (!token) {
+      router.replace('/login');
+      return;
+    }
     const stored = localStorage.getItem('completedTutos');
     if (stored) setCompleted(JSON.parse(stored));
     const pseudoStored = localStorage.getItem('pseudoMembre');
@@ -26,10 +34,13 @@ export default function EspaceMembre() {
     setLogged(false);
     setPseudo("");
     localStorage.removeItem('pseudoMembre');
+    localStorage.removeItem('auth_token');
+    router.replace('/login');
   };
 
   return (
     <main className="container mx-auto px-4 py-16 max-w-2xl">
+      <button onClick={() => router.push('/')} className="mb-6 bg-blue-100 text-blue-700 px-4 py-2 rounded hover:bg-blue-200 transition">← Retour à l’accueil</button>
       <h1 className="text-3xl font-bold mb-6">Espace membre</h1>
       {!logged ? (
         <form onSubmit={handleLogin} className="flex flex-col gap-4 max-w-sm mx-auto">

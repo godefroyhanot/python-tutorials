@@ -1,8 +1,57 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
   font-family: 'Roboto', sans-serif;
+  background: #f2f6fb;
+}
+
+h1, h2, h3, h4, .font-mono {
+  font-family: 'Source Code Pro', 'Roboto Mono', monospace;
+}
+
+/* Python blue and yellow accents */
+.text-blue-python {
+  color: #306998;
+}
+.bg-blue-python {
+  background: #306998;
+}
+.text-yellow-python {
+  color: #FFD43B;
+}
+.bg-yellow-python {
+  background: #FFD43B;
+}
+
+/* Buttons Python style */
+.btn-python {
+  background: #306998;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  transition: background 0.2s;
+}
+.btn-python:hover {
+  background: #FFD43B;
+  color: #222;
+}
+
+/* Liens hover jaune */
+a:hover {
+  color: #FFD43B !important;
+}
+
+/* Code blocks Python style */
+pre, code {
+  font-family: 'Source Code Pro', 'Roboto Mono', monospace;
+  background: #f7f7fa;
+  color: #306998;
+  border-radius: 0.4em;
+  padding: 0.2em 0.5em;
+  font-size: 1em;
 }
