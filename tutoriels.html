@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutoriels Python</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body { font-family: 'Roboto', sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <header class="bg-white shadow">
+    <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-blue-600">Tutoriels Python</h1>
+      <nav>
+        <a href="index.html" class="text-gray-700 hover:text-blue-500 mx-2">Accueil</a>
+        <a href="tutoriels.html" class="text-gray-700 hover:text-blue-500 mx-2">Tutoriels</a>
+        <a href="contact.html" class="text-gray-700 hover:text-blue-500 mx-2">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container mx-auto px-4 py-12">
+    <h2 class="text-2xl font-bold mb-8 text-center">Liste des tutoriels</h2>
+    <!-- Filtres par format -->
+    <div class="flex flex-wrap justify-center gap-4 mb-8">
+      <button class="filter-btn bg-blue-100 text-blue-800 px-4 py-2 rounded" data-format="all">Tous</button>
+      <button class="filter-btn bg-blue-100 text-blue-800 px-4 py-2 rounded" data-format="video">Vidéos</button>
+      <button class="filter-btn bg-green-100 text-green-800 px-4 py-2 rounded" data-format="pdf">PDF</button>
+    </div>
+    <!-- Historique des tutoriels complétés -->
+    <div class="mb-8 text-center" id="completed-tutos"></div>
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Tutoriel 1 : Vidéo MP4 -->
+      <div class="bg-white rounded-lg shadow p-6 flex flex-col">
+        <h3 class="text-xl font-semibold mb-2">Motion Design Python</h3>
+        <span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded text-xs mb-2">Format : Vidéo (MP4)</span>
+        <p class="mb-4">Tutoriel vidéo sur le motion design avec Python.</p>
+        <div class="mb-4">
+          <video controls class="w-full rounded">
+            <source src="tutorials/tuto_1_motion_design_godefroy_hanot copie.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la lecture vidéo.
+          </video>
+        </div>
+        <a href="tutorials/tuto_1_motion_design_godefroy_hanot copie.mp4" class="text-blue-500 hover:underline mt-auto" download>Télécharger la vidéo</a>
+      </div>
+      <!-- Tutoriel 2 : Vidéo MOV -->
+      <div class="bg-white rounded-lg shadow p-6 flex flex-col">
+        <h3 class="text-xl font-semibold mb-2">Python Tutoriel Vidéo 2</h3>
+        <span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded text-xs mb-2">Format : Vidéo (MOV)</span>
+        <p class="mb-4">Deuxième tutoriel vidéo Python (format MOV).</p>
+        <div class="mb-4">
+          <video controls class="w-full rounded">
+            <source src="tutorials/tuto_2_godefroy_hanot copie.mov" type="video/quicktime">
+            Votre navigateur ne supporte pas la lecture vidéo.
+          </video>
+        </div>
+        <a href="tutorials/tuto_2_godefroy_hanot copie.mov" class="text-blue-500 hover:underline mt-auto" download>Télécharger la vidéo</a>
+      </div>
+      <!-- Tutoriel 3 : PDF -->
+      <div class="bg-white rounded-lg shadow p-6 flex flex-col">
+        <h3 class="text-xl font-semibold mb-2">Python PDF 1</h3>
+        <span class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded text-xs mb-2">Format : PDF</span>
+        <p class="mb-4">Tutoriel Python au format PDF (1).</p>
+        <div class="mb-4">
+          <embed src="tutorials/tuto_3_godefroy_hanot copie.pdf" type="application/pdf" class="w-full h-64 rounded" />
+        </div>
+        <a href="tutorials/tuto_3_godefroy_hanot copie.pdf" class="text-blue-500 hover:underline mt-auto" download>Télécharger le PDF</a>
+      </div>
+      <!-- Tutoriel 4 : PDF -->
+      <div class="bg-white rounded-lg shadow p-6 flex flex-col">
+        <h3 class="text-xl font-semibold mb-2">Python PDF 2</h3>
+        <span class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded text-xs mb-2">Format : PDF</span>
+        <p class="mb-4">Deuxième tutoriel Python au format PDF.</p>
+        <div class="mb-4">
+          <embed src="tutorials/tuto_4_godefroy_hanot copie.pdf" type="application/pdf" class="w-full h-64 rounded" />
+        </div>
+        <a href="tutorials/tuto_4_godefroy_hanot copie.pdf" class="text-blue-500 hover:underline mt-auto" download>Télécharger le PDF</a>
+      </div>
+      <!-- Tutoriel 5 : PDF -->
+      <div class="bg-white rounded-lg shadow p-6 flex flex-col">
+        <h3 class="text-xl font-semibold mb-2">Python PDF 3</h3>
+        <span class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded text-xs mb-2">Format : PDF</span>
+        <p class="mb-4">Troisième tutoriel Python au format PDF.</p>
+        <div class="mb-4">
+          <embed src="tutorials/tuto_5_godefroy_hanot copie.pdf" type="application/pdf" class="w-full h-64 rounded" />
+        </div>
+        <a href="tutorials/tuto_5_godefroy_hanot copie.pdf" class="text-blue-500 hover:underline mt-auto" download>Télécharger le PDF</a>
+      </div>
+    </div>
+    <p class="text-center text-gray-500 mt-10">Ajoutez vos tutoriels ici en dupliquant le bloc ci-dessus et en remplissant les informations.</p>
+  </main>
+  <footer class="bg-white border-t mt-16 py-4 text-center text-gray-500 text-sm">
+    &copy; 2025 Tutoriels Python – Réalisé par un étudiant passionné<br>
+    <span class="block mt-2">Travail pédagogique sans objectifs commerciaux</span>
+  </footer>
+  <script>
+    // Gestion des filtres
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const tutoCards = document.querySelectorAll('.grid > div.bg-white');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const format = btn.getAttribute('data-format');
+        tutoCards.forEach(card => {
+          if (format === 'all') {
+            card.style.display = '';
+          } else if (format === 'video') {
+            card.querySelector('span').textContent.includes('Vidéo') ? card.style.display = '' : card.style.display = 'none';
+          } else if (format === 'pdf') {
+            card.querySelector('span').textContent.includes('PDF') ? card.style.display = '' : card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Gestion des tutoriels complétés
+    const completedTutos = JSON.parse(localStorage.getItem('completedTutos') || '[]');
+    const completedDiv = document.getElementById('completed-tutos');
+    function updateCompletedDisplay() {
+      if (completedTutos.length === 0) {
+        completedDiv.innerHTML = '<span class="text-gray-400">Aucun tutoriel complété.</span>';
+      } else {
+        completedDiv.innerHTML = '<b>Tutoriels complétés :</b> ' + completedTutos.join(', ');
+      }
+    }
+    updateCompletedDisplay();
+
+    tutoCards.forEach(card => {
+      const title = card.querySelector('h3').textContent;
+      const btn = document.createElement('button');
+      btn.textContent = completedTutos.includes(title) ? 'Marqué comme complété' : 'Marquer comme complété';
+      btn.className = 'mt-2 px-4 py-2 rounded bg-blue-200 text-blue-900 hover:bg-blue-300';
+      btn.disabled = completedTutos.includes(title);
+      btn.addEventListener('click', () => {
+        if (!completedTutos.includes(title)) {
+          completedTutos.push(title);
+          localStorage.setItem('completedTutos', JSON.stringify(completedTutos));
+          btn.textContent = 'Marqué comme complété';
+          btn.disabled = true;
+          updateCompletedDisplay();
+        }
+      });
+      card.appendChild(btn);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "titre": "Motion Design Python",
+    "format": "video",
+    "description": "Tutoriel vidéo sur le motion design avec Python.",
+    "fichier": "/tutorials/tuto_1_motion_design_godefroy_hanot copie.mp4"
+  },
+  {
+    "id": 2,
+    "titre": "Python Tutoriel Vidéo 2",
+    "format": "video",
+    "description": "Deuxième tutoriel vidéo Python (format MOV).",
+    "fichier": "/tutorials/tuto_2_godefroy_hanot copie.mov"
+  },
+  {
+    "id": 3,
+    "titre": "Python PDF 1",
+    "format": "pdf",
+    "description": "Tutoriel Python au format PDF (1).",
+    "fichier": "/tutorials/tuto_3_godefroy_hanot copie.pdf"
+  },
+  {
+    "id": 4,
+    "titre": "Python PDF 2",
+    "format": "pdf",
+    "description": "Deuxième tutoriel Python au format PDF.",
+    "fichier": "/tutorials/tuto_4_godefroy_hanot copie.pdf"
+  },
+  {
+    "id": 5,
+    "titre": "Python PDF 3",
+    "format": "pdf",
+    "description": "Troisième tutoriel Python au format PDF.",
+    "fichier": "/tutorials/tuto_5_godefroy_hanot copie.pdf"
+  }
+]
