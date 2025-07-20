@@ -11,7 +11,7 @@ export default function About() {
           <p className="mb-4"><b>Travail pédagogique sans objectifs commerciaux.</b></p>
           <p className="mb-4">Ce site a été réalisé dans le cadre d’un projet étudiant à la Normandie Web School. Il regroupe des tutoriels Python sous différents formats (vidéo, PDF, etc.).</p>
           <p className="mb-4">Conformité RGPD : aucune donnée personnelle n’est collectée ni stockée sur ce site.</p>
-          <p className="mb-4">Contact : <a href="mailto:VOTRE_EMAIL@exemple.com" className="text-blue-500 underline">VOTRE_EMAIL@exemple.com</a></p>
+          
         </div>
       </main>
       <Footer />

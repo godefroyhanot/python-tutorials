@@ -11,13 +11,18 @@ export default function Tutoriels() {
   const [catFilter, setCatFilter] = useState('all');
 
   useEffect(() => {
-    fetch('/data/tutoriels.json')
+    const token = localStorage.getItem('auth_token');
+    fetch('/api/tutoriels/list', {
+      headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+    })
       .then(res => res.json())
       .then(data => {
-        setTutos(data);
-        // Extraire dynamiquement les catégories
-        const cats = Array.from(new Set(data.map(t => t.categorie).filter(Boolean)));
-        setCategories(cats);
+        if (data.success && Array.isArray(data.tutoriels)) {
+          setTutos(data.tutoriels);
+          // Extraire dynamiquement les catégories si elles existent dans la base (optionnel)
+          const cats = Array.from(new Set(data.tutoriels.map(t => t.categorie).filter(Boolean)));
+          setCategories(cats);
+        }
       });
     setCompleted(JSON.parse(localStorage.getItem('completedTutos') || '[]'));
   }, []);
@@ -28,10 +33,74 @@ export default function Tutoriels() {
     localStorage.setItem('completedTutos', JSON.stringify(updated));
   };
 
+  // Ordre personnalisé demandé par l'utilisateur
+  const ordreTutos = [
+    "Introduction à Python",
+    "Installer Python",
+    "Les Bases du Langage",
+    "Contrôle de flux et conditions",
+    "Manipulation des fichiers avec Python"
+  ];
   let filteredTutos = tutos
     .filter(t => filter === 'all' || t.format === filter)
     .filter(t => catFilter === 'all' || t.categorie === catFilter)
-    .filter(t => t.titre.toLowerCase().includes(search.toLowerCase()));
+    .filter(t => t.titre.toLowerCase().includes(search.toLowerCase()))
+    .sort((a, b) => {
+      const ia = ordreTutos.indexOf(a.titre);
+      const ib = ordreTutos.indexOf(b.titre);
+      if (ia !== -1 && ib !== -1) return ia - ib;
+      if (ia !== -1) return -1;
+      if (ib !== -1) return 1;
+      return 0;
+    });
+
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [editId, setEditId] = useState(null);
+  const [editData, setEditData] = useState({});
+  useEffect(() => {
+    const token = localStorage.getItem('auth_token');
+    setIsAdmin(!!token);
+  }, []);
+
+  async function handleDelete(id) {
+    if (!window.confirm('Voulez-vous vraiment supprimer ce tutoriel ?')) return;
+    const token = localStorage.getItem('auth_token');
+    const res = await fetch(`/api/tutoriels/delete?id=${id}`, {
+      method: 'DELETE',
+      headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+    });
+    if (res.ok) {
+      setTutos(tutos => tutos.filter(t => t.id !== id));
+    }
+  }
+
+  function handleEdit(tuto) {
+    setEditId(tuto.id);
+    setEditData({ ...tuto });
+  }
+
+  async function handleEditSubmit(e) {
+    e.preventDefault();
+    const token = localStorage.getItem('auth_token');
+    const res = await fetch('/api/tutoriels/update', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+      },
+      body: JSON.stringify(editData)
+    });
+    if (res.ok) {
+      const data = await res.json();
+      setTutos(tutos => tutos.map(t => t.id === editId ? data.tutoriel : t));
+      setEditId(null);
+    }
+  }
+
+  function handleEditChange(e) {
+    const { name, value } = e.target;
+    setEditData(data => ({ ...data, [name]: value }));
+  }
 
   return (
     <>
@@ -74,10 +143,42 @@ export default function Tutoriels() {
           {filteredTutos.length === 0 && <div className="col-span-2 text-center text-gray-500">Aucun résultat</div>}
           {filteredTutos.map(tuto => (
             <div key={tuto.id} className="bg-white rounded-lg shadow p-6 flex flex-col">
-              <h3 className="text-xl font-semibold mb-2">{tuto.titre}</h3>
-              {tuto.categorie && <span className="inline-block bg-yellow-100 text-yellow-800 px-3 py-1 rounded text-xs mb-2">{tuto.categorie}</span>}
-              <span className={`inline-block px-3 py-1 rounded text-xs mb-2 ${tuto.format === 'pdf' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>Format : {tuto.format === 'pdf' ? 'PDF' : 'Vidéo'}</span>
-              <p className="mb-4">{tuto.description}</p>
+              {editId === tuto.id ? (
+                <form onSubmit={handleEditSubmit} className="flex flex-col gap-2 mb-4">
+                  <input name="titre" value={editData.titre || ''} onChange={handleEditChange} className="border rounded px-2 py-1" />
+                  <input name="categorie" value={editData.categorie || ''} onChange={handleEditChange} className="border rounded px-2 py-1" placeholder="Catégorie" />
+                  <select name="format" value={editData.format || ''} onChange={handleEditChange} className="border rounded px-2 py-1">
+                    <option value="pdf">PDF</option>
+                    <option value="video">Vidéo</option>
+                  </select>
+                  <input name="fichier" value={editData.fichier || ''} onChange={handleEditChange} className="border rounded px-2 py-1" placeholder="Chemin du fichier" />
+                  <textarea name="description" value={editData.description || ''} onChange={handleEditChange} className="border rounded px-2 py-1" placeholder="Description" />
+                  <div className="flex gap-2">
+                    <button type="submit" className="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600">Enregistrer</button>
+                    <button type="button" onClick={() => setEditId(null)} className="bg-gray-400 text-white px-4 py-1 rounded hover:bg-gray-500">Annuler</button>
+                  </div>
+                </form>
+              ) : (
+                <>
+                  <h3 className="text-xl font-semibold mb-2">{tuto.titre}</h3>
+                  {tuto.categorie && <span className="inline-block bg-yellow-100 text-yellow-800 px-3 py-1 rounded text-xs mb-2">{tuto.categorie}</span>}
+                  <span className={`inline-block px-3 py-1 rounded text-xs mb-2 ${tuto.format === 'pdf' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>Format : {tuto.format === 'pdf' ? 'PDF' : 'Vidéo'}</span>
+                  <p className="mb-4">{tuto.description}</p>
+                  {isAdmin && (
+                    <div className="flex gap-2 mt-2">
+                      <button
+                        onClick={() => handleEdit(tuto)}
+                        className="bg-yellow-400 text-white px-4 py-1 rounded hover:bg-yellow-500 transition"
+                      >Modifier</button>
+                      <button
+                        onClick={() => handleDelete(tuto.id)}
+                        className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 transition"
+                      >Supprimer</button>
+                    </div>
+                  )}
+                </>
+              )}
+
               <div className="mb-4">
                 {tuto.format === 'pdf' ? (
                   <embed src={tuto.fichier} type="application/pdf" className="w-full h-64 rounded" />

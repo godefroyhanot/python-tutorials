@@ -31,9 +31,13 @@ export default function Navbar() {
         <nav>
           <Link href="/" className="text-blue-900 hover:text-yellow-400 mx-2 font-semibold transition-colors">Accueil</Link>
           <Link href="/tutoriels" className="text-blue-900 hover:text-yellow-400 mx-2 font-semibold transition-colors">Tutoriels</Link>
-          <Link href="/contact" className="text-blue-900 hover:text-yellow-400 mx-2 font-semibold transition-colors">Contact</Link>
-          <Link href="/login" className="text-blue-900 hover:text-yellow-400 mx-2 font-semibold transition-colors">Connexion</Link>
-          <Link href="/admin" className="text-blue-900 hover:text-yellow-400 mx-2 font-semibold transition-colors">Admin</Link>
+          
+          {!pseudo && (
+            <Link href="/login" className="text-blue-900 hover:text-yellow-400 mx-2 font-semibold transition-colors">Connexion</Link>
+          )}
+          {pseudo && pseudo.toLowerCase() === 'godefroy' && (
+            <Link href="/admin" className="text-blue-900 hover:text-yellow-400 mx-2 font-semibold transition-colors">Admin</Link>
+          )}
           <Link href="/about" className="text-blue-900 hover:text-yellow-400 mx-2 font-semibold transition-colors">À propos</Link>
         </nav>
         {pseudo && (

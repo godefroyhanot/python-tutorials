@@ -21,3 +21,14 @@ model User {
   pseudo    String?
   createdAt DateTime @default(now())
 }
+
+model Tutoriel {
+  id          Int      @id @default(autoincrement())
+  titre       String
+  format      String
+  description String?
+  fichier     String
+  categorie   String?
+  public      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
