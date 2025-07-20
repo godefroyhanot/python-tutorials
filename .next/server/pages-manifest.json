@@ -3,7 +3,9 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/espace-membre": "pages/espace-membre.js",
   "/tutoriels": "pages/tutoriels.js",
-  "/login": "pages/login.js"
+  "/login": "pages/login.js",
+  "/api/tutoriels/list": "pages/api/tutoriels/list.js",
+  "/api/auth/login": "pages/api/auth/login.js",
+  "/espace-membre": "pages/espace-membre.js"
 }
