@@ -2,10 +2,12 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js",
   "/tutoriels": "pages/tutoriels.js",
-  "/login": "pages/login.js",
+  "/": "pages/index.js",
   "/api/tutoriels/list": "pages/api/tutoriels/list.js",
+  "/espace-membre": "pages/espace-membre.js",
   "/api/auth/login": "pages/api/auth/login.js",
-  "/espace-membre": "pages/espace-membre.js"
+  "/login": "pages/login.js",
+  "/mentions-legales": "pages/mentions-legales.js",
+  "/about": "pages/about.js"
 }
