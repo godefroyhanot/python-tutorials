@@ -1,33 +1,66 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+/**
+ * SCHÉMA PRISMA - Base de données du projet Python Tutorials
+ * 
+ * Ce fichier définit la structure de la base de données et les modèles de données
+ * utilisés par l'application. Prisma génère automatiquement le client TypeScript
+ * basé sur ce schéma.
+ * 
+ * Documentation: https://pris.ly/d/prisma-schema
+ * Accélération des requêtes: https://pris.ly/cli/accelerate-init
+ */
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
+// Configuration du générateur de client Prisma
+// Génère le client JavaScript/TypeScript pour interagir avec la DB
 generator client {
   provider = "prisma-client-js"
 }
 
+// Configuration de la source de données
+// SQLite pour le développement local avec ngrok
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_URL")  // Variable d'environnement
 }
 
+/**
+ * MODÈLE USER - Gestion des utilisateurs
+ * 
+ * Représente les comptes utilisateurs du système d'authentification
+ * Utilisé pour l'inscription, la connexion et la gestion des permissions
+ */
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  password  String
-  pseudo    String?
-  createdAt DateTime @default(now())
+  id        Int      @id @default(autoincrement())  // Clé primaire auto-incrémentée
+  email     String   @unique                         // Email unique (identifiant de connexion)
+  password  String                                   // Mot de passe hashé (bcrypt)
+  pseudo    String?                                  // Nom d'affichage optionnel
+  createdAt DateTime @default(now())                 // Date de création du compte
+  
+  // TODO: Ajouter une relation avec les tutoriels (auteur)
+  // tutoriels Tutoriel[]
 }
 
+/**
+ * MODÈLE TUTORIEL - Gestion du contenu pédagogique
+ * 
+ * Représente les ressources d'apprentissage (vidéos, PDFs, etc.)
+ * Système de visibilité public/privé pour contrôler l'accès
+ */
 model Tutoriel {
-  id          Int      @id @default(autoincrement())
-  titre       String
-  format      String
-  description String?
-  fichier     String
-  categorie   String?
-  public      Boolean  @default(true)
-  createdAt   DateTime @default(now())
+  id          Int      @id @default(autoincrement())  // Identifiant unique
+  titre       String                                  // Nom du tutoriel (obligatoire)
+  format      String                                  // Type: "video", "pdf", "article", etc.
+  description String?                                 // Description détaillée (optionnelle)
+  fichier     String                                  // Chemin/nom du fichier (obligatoire)
+  categorie   String?                                 // Catégorie thématique (optionnelle)
+  public      Boolean  @default(true)                // Visibilité: true=public, false=privé
+  createdAt   DateTime @default(now())                // Date de création
+  
+  // TODO: Ajouter une relation avec l'utilisateur créateur
+  // authorId  Int?
+  // author    User?    @relation(fields: [authorId], references: [id])
+  
+  // TODO: Ajouter des métadonnées utiles
+  // updatedAt DateTime @updatedAt
+  // views     Int      @default(0)
+  // tags      String[] // Pour un système de tags
 }

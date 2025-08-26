@@ -6,3 +6,14 @@ node_modules
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Base de données SQLite
+prisma/dev.db
+prisma/dev.db-journal
+
+# Fichiers d'upload
+public/uploads/
+
+# Fichiers système
+.DS_Store
+Thumbs.db

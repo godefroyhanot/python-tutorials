@@ -2,9 +2,11 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/tutoriels": "pages/tutoriels.js",
+  "/login": "pages/login.js",
   "/": "pages/index.js",
-  "/tutoriels/[id]": "pages/tutoriels/[id].js",
+  "/tutoriels": "pages/tutoriels.js",
   "/api/tutoriels/list": "pages/api/tutoriels/list.js",
-  "/login": "pages/login.js"
+  "/about": "pages/about.js",
+  "/mentions-legales": "pages/mentions-legales.js",
+  "/espace-membre": "pages/espace-membre.js"
 }
