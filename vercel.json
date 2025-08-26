@@ -1,0 +1,11 @@
+{
+  "functions": {
+    "pages/api/**/*.js": {
+      "maxDuration": 10
+    }
+  },
+  "buildCommand": "npm run build && npx prisma generate",
+  "env": {
+    "DATABASE_URL": "@database_url"
+  }
+}

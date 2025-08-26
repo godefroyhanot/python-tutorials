@@ -27,30 +27,20 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/about": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/about.js"
-    ],
-    "/espace-membre": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/espace-membre.js"
-    ],
     "/login": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/login.js"
     ],
-    "/mentions-legales": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/mentions-legales.js"
-    ],
     "/tutoriels": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/tutoriels.js"
+    ],
+    "/tutoriels/[id]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/tutoriels/[id].js"
     ]
   },
   "ampFirstPages": []
